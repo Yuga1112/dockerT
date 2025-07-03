@@ -14,20 +14,21 @@ import com.example.demo.dto.MemberDTO;
 import com.example.demo.service.MemberService;
 
 @Controller
-@RequestMapping("/member")
+//@RequestMapping("/member")
 public class MemberController {
 
 	@Autowired
 	private MemberService service;
 
-	@GetMapping("/list")
+	@GetMapping("/member/list")
 	public void list(@RequestParam(name = "page", defaultValue = "0") int page, Model model) {
 		Page<MemberDTO> list = service.getList(page);
 		model.addAttribute("list", list);	
 	}
 	
 	@GetMapping("/register")
-	public void register() {
+	public String register() {
+		return "member/register";
 	}
 
 	@PostMapping("/register")
